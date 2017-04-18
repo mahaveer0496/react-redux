@@ -3,21 +3,16 @@ import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div>
-        <p>TodoApp</p>
-      </div>
-    )
-  }
-}
+// Compoennts
+import Container from './utils/app'
+// actions
+import { ADD_TODO, DELETE_TODO } from './utils/actionTypes';
+// store
+import store from './utils/reducer'
 
-
-
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(App);
-render(<App /> , document.getElementById('root'))
+render(
+  <Provider store={store}>
+    <Container />
+  </Provider>
+  , document.getElementById('root')
+)
