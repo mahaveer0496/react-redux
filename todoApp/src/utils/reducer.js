@@ -2,19 +2,22 @@ import { createStore } from 'redux';
 import { ADD_TODO, DELETE_TODO } from './actionTypes';
 
 
-export const addTodoActionCreator = toDo => ({
+export const addTodoActionCreator = todo => ({
    type: ADD_TODO,
-   toDo
+   todo
 })
 
-export const deleteTodoActionCreator = () => ({
-   type: DELETE_TODO
+export const deleteTodoActionCreator = (index) => ({
+   type: DELETE_TODO,
+   index
 })
 
-export const reducer = (state = [], action) => {
+const reducer = (state = [], action) => {
    switch (action.type) {
       case ADD_TODO:
-         return state.concat(action.toDo)
+         return state.concat(action.todo)
+      case DELETE_TODO:
+         return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
       default:
          return state
    }

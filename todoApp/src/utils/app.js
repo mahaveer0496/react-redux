@@ -1,12 +1,11 @@
-import React from 'react';
-import { Provider, connect } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // store
-import store, { addTodoActionCreator } from './reducer'
+import { addTodoActionCreator, deleteTodoActionCreator } from './reducer'
 
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,19 +14,31 @@ class App extends React.Component {
     this.props.addTodo(this.refs.text.value);
     this.refs.text.value = '';
   }
+  deleteTodo = (index) => {
+    console.log(`deleteCalled ${index}`);
+    this.props.deleteTodo(index)
+  }
   render() {
     let { todos } = this.props;
     console.log(todos);
     return (
-      <div>
+      <div className="jumbotron container">
         <form onSubmit={this.addTodo}>
-          <input type="text" ref="text" />
-          <input type="submit" />
+          <input className="form-control" type="text" ref="text" />
+          <input className="btn btn-primary btn-block" type="submit" />
         </form>
-        <ul>
-          {todos.map(todo => {
-            <li>{todo}</li>
-          })}
+        <ul className="list-group">
+          {todos.map((todo, index) =>
+            <li className="list-group-item justify-content-between">
+              {todo}
+              <span
+                onClick={() => this.deleteTodo(index)}
+                key={index} className="badge badge-default badge-circle"
+              >
+                x
+              </span>
+            </li>
+          )}
         </ul>
       </div>
     )
@@ -38,11 +49,15 @@ function mapStateToProps(state) {
   return {
     todos: state
   }
+
 }
 function mapDispatchToProps(dispatch) {
   return {
     addTodo: (todo) => {
       dispatch(addTodoActionCreator(todo))
+    },
+    deleteTodo: (index) => {
+      dispatch(deleteTodoActionCreator(index))
     }
   }
 }
