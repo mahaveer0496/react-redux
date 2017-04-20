@@ -16,6 +16,7 @@
         "react"
     ],
     "rules": {
+
         "no-console": "off",
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
@@ -238,7 +239,7 @@
         "semi-spacing": "error",
         "sort-imports": "off",
         "sort-keys": "off",
-        "sort-vars": "error",
+        "sort-vars": "off",
         "space-before-blocks": "error",
         "space-before-function-paren": "off",
         "space-in-parens": [
