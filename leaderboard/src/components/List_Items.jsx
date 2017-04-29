@@ -14,17 +14,36 @@ export default class List_Items extends Component {
          response.json().then(users => {
             this.setState({
                users
-            }, ()=>{
-               console.log(this.state.users[0]);
+            })
+         })
+      })
+   }
+   sortByRecent = () => {
+      fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent').then(response => {
+         response.json().then(users => {
+            this.setState({
+               users
+            })
+         })
+      })
+   }
+   sortByAllTime = () => {
+      fetch('https://fcctop100.herokuapp.com/api/fccusers/top/alltime').then(response => {
+         response.json().then(users => {
+            this.setState({
+               users
             })
          })
       })
    }
    render() {
       return (
-         <div>
-            <h1>welcome to List_Items</h1>
-            <List_Item users={this.state.users}/>
+         <div className="data-container">
+            <List_Item 
+            users={this.state.users} 
+            sortByAllTime={this.sortByAllTime}
+            sortByRecent={this.sortByRecent}
+            />
          </div>
       )
    }

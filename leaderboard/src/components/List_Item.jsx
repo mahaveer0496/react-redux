@@ -1,31 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class List_Items extends Component {
-   constructor(props) {
-      super(props);
-   }
-   render() {
-      return (
-         <table>
-            <thead>
-               <tr>
-                  <th>#</th>
-                  <th>Camper Name</th>
-                  <th>Points In Last 30 Days</th>
-                  <th>All time Points</th>
-               </tr>
-            </thead>
-            <tbody>
-               {this.props.users.map((user, index) =>
-                  <tr key={index}>
-                     <td>{index + 1}</td>
-                     <td>{user.username}</td>
-                     <td>{user.recent}</td>
-                     <td>{user.alltime}</td>
-                  </tr>
-               )}
-            </tbody>
-         </table>
-      )
-   }
-}
+let List_Items = props =>
+   <table className="table table-striped table-hover">
+      <thead className="thead-inverse">
+         <tr>
+            <th>#</th>
+            <th>Camper Name</th>
+            <th className="text-center sort" onClick={props.sortByRecent}>Points In Last 30 Days</th>
+            <th className="text-center sort" onClick={props.sortByAllTime}>All time Points</th>
+         </tr>
+      </thead>
+      <tbody>
+         {props.users.map((user, index) =>
+            <tr key={index}>
+               <td className="align-middle">{index + 1}.</td>
+               <td className="align-middle text-left"><img src={user.img} alt={user.username} className="img-thumbnail" width="40px" height="40px" />
+                  <a href={`https://www.freecodecamp.com/${user.username}`} target="_blank">     {user.username}</a>
+               </td>
+               <td className="align-middle text-center">{user.recent}</td>
+               <td className="align-middle text-center">{user.alltime}</td>
+            </tr>
+         )}
+      </tbody>
+   </table>
+export default List_Items

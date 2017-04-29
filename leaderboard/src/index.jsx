@@ -6,8 +6,8 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-xs-8 col-xs-offset-2">
+        <div className="row align-items-center">
+          <div className="col-8 offset-2">
             <Header />
             <List_Items />
           </div>
