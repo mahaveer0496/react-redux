@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: __dirname,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: './public/bundle.js'
   },
   module: {
     loaders: [{
@@ -23,7 +23,5 @@ module.exports = {
     inline: true,
     historyApiFallback: true,
     contentBase: './'
-  },
-  devtool: '#inline-source-map'
-
+  }
 };
