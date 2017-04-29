@@ -5,7 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:mahaveer0496/react-redux.git",
   "scripts": {
-    "start": "webpack-dev-server --content-base ./"
+    "start": "webpack -w",
+    "sync": "browser-sync start --server --files \"index.html, styles.css, bundle.js\""
   },
   "author": "mahaveer",
   "license": "ISC",
@@ -21,6 +22,7 @@
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
     "react": "^0.14.3",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^0.14.3",
     "react-redux": "4.0.0",
     "react-router": "^2.0.1",

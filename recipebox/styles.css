@@ -1,16 +1,14 @@
-a{
-   text-decoration: none;
-   color: black
+/*.box-container{
+   display: flex;
+   align-content: center;
+   justify-content: space-around;
 }
-a:hover{
-   text-decoration: none
-}
-.sort{
-   cursor: pointer
-}
-body{
-   background-color: #f4f4f4
-}
-.data-container{
-   background-color: white
+.boxes{
+   display: inline-block;
+   width: 300px;
+   margin: 5px;
+}*/
+
+button{
+   margin: 5px;
 }
