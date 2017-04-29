@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // store
 import {
-  addTodoActionCreator, deleteTodoActionCreator,
+  addTodoActionCreator, deleteTodoActionCreator, showAllActionCreator,
   markCompletedActionCreator, showCompletedActionCreator, showInProgressActionCreator
 } from './reducer'
 
@@ -22,6 +22,9 @@ class App extends Component {
   }
   deleteTodo = index => {    // console.log(`deleteCalled ${index}`);
     this.props.deleteTodo(index)
+  }
+  showAll = () => {
+    this.props.showAllTodo();
   }
   markCompleted = index => {
     this.props.markCompletedTodo(index)
@@ -52,9 +55,9 @@ class App extends Component {
                   this.setState({
                     todoIsComplpeted: !this.state.todoIsComplpeted
                   })
-                  }}
+                }}
                 className={
-                  todo.completed?
+                  todo.completed ?
                     `list-group-item list-group-item-success justify-content-between` :
                     `list-group-item justify-content-between`
                 }>
@@ -70,6 +73,7 @@ class App extends Component {
           )}
         </ul>
         <br />
+        <button onClick={this.showAll} className="btn btn-outline-primary">show All</button>
         <button onClick={this.showCompleted} className="btn btn-outline-primary">completed</button>
         <button onClick={this.showInProgress} className="btn btn-outline-primary">In-progress</button>
       </div>
@@ -90,6 +94,9 @@ function mapDispatchToProps(dispatch) {
     },
     deleteTodo: (index) => {
       dispatch(deleteTodoActionCreator(index))
+    },
+    showAllTodo: () => {
+      dispatch(showAllActionCreator())
     },
     showCompletedTodo: () => {
       dispatch(showCompletedActionCreator())

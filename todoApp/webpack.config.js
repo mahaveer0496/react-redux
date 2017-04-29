@@ -1,5 +1,8 @@
+let webpack = require('webpack'),
+path = require('path');
 module.exports = {
   entry: [
+    'webpack-hot-middleware/client?reload=true',
     './src/index.js'
   ],
   output: {
@@ -17,6 +20,10 @@ module.exports = {
       }
     }]
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -25,5 +32,5 @@ module.exports = {
     historyApiFallback: true,
     contentBase: './'
   },
-  devtool: '#inline-source-map'
+  devtool: 'cheap-module-eval-source-map'
 };
