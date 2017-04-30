@@ -7,16 +7,37 @@ export default class Recipe extends Component {
       super(props)
    }
    render() {
-      let { recipe, index, deleteRecipe, editRecipe, showEditor } = this.props
+      let { index, deleteRecipe, showEditorFunc, ingredients, title } = this.props
       return (
          <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <ul className=" list-group">
-               {recipe.map((ingredients, ind) =>
-                  <li className="list-group-item" key={ind}>{ingredients}</li>
-               )}
-            </ul>
-            <button onClick={()=> editRecipe(index)}className="btn btn-sm btn-primary">Edit</button>
-            <button onClick={()=> deleteRecipe(index)}className="btn btn-sm btn-danger">Delete</button>
+            <table className="table table-bordered table-hover">
+               <thead className="thead-inverse">
+                  <tr>
+                     <th className="text-center">
+                        {title}
+                     </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {ingredients.map((ingredient, ind) =>
+                     <tr key={ind}>
+                        <td className="text-center">
+                           {ingredient}
+                        </td>
+                     </tr>
+                  )}
+               </tbody>
+            </table>
+
+            <button
+               onClick={() => showEditorFunc(index)}
+               className="btn btn-sm btn-primary">Edit
+            </button>
+
+            <button
+               onClick={() => deleteRecipe(index)}
+               className="btn btn-sm btn-danger">Delete
+            </button>
          </div >
       )
    }

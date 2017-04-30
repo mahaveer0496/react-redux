@@ -1,5 +1,8 @@
-.box-container{
-   
+.showRecipes{
+   display: block
+}
+.hideRecipes{
+   display: none
 }
 
 button{

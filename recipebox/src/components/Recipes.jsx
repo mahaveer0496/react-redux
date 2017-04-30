@@ -5,51 +5,80 @@ export default class Recipes extends Component {
    constructor(props) {
       super(props)
       this.state = {
-         ingredients: [['tomato', 'sauce', 'cury'], ['apple', 'cider', 'vinegar'], ['bread', 'jelly', 'jam']],
-         showEditor: false
+         recipes: [{
+            title: 'Tomato curry',
+            ingredients: ['tomato', 'sauce', 'cury']
+         },
+         {
+            title: 'Apple wine',
+            ingredients: ['apple', 'cider', 'vinegar']
+         },
+         {
+            title: 'Bread',
+            ingredients: ['bread', 'jelly', 'jam']
+         }
+         ]
       }
    }
    submitHandler = (event) => {
       event.preventDefault();
-      let ing = this.refs.recipe.value
+      let recipeTitle = this.refs.title.value;
+      let ing = this.refs.recipe.value;
       let ingredientsArr = ing.split(',')
+      let obj = {
+         title: recipeTitle,
+         ingredients: ingredientsArr
+      }
       this.setState({
-         ingredients: [...this.state.ingredients, ingredientsArr]
-      },()=>{
-         console.log(this.state.ingredients);
+         recipes: [...this.state.recipes, obj]
+      }, () => {
+         console.log(this.state.recipes);
       })
       this.refs.recipe.value = ''
    }
    deleteRecipe = (index) => {
       this.setState({
-         ingredients: [...this.state.ingredients.slice(0, index), ...this.state.ingredients.slice(index + 1)]
+         recipes: [...this.state.recipes.slice(0, index), ...this.state.recipes.slice(index + 1)]
       })
    }
    editRecipe = (index) => {
-      console.log(`edit called ${index}`);
-      this.setState({
-         showEditor: true
-      })
+   }
+   componentWillReceiveProps = (nextProps) => {
+      if (nextProps.newIngredients.length !== 0 && nextProps.newIngredients !== this.props.newIngredients) {
+         let newIndex = nextProps.index;
+         let newIngredient = nextProps.newIngredients
+         let newArr = this.state.recipes.map((val, i) =>
+            val = i === newIndex ? newIngredient : val
+         )
+         this.setState({
+            recipes: newArr
+         })
+
+      }
    }
    render() {
       return (
          <div>
             <form className="form-group" onSubmit={this.submitHandler}>
+               <input className="form-control" type="text" ref="title" placeholder="Enter the title" />
                <input className="form-control" type="text" ref="recipe" placeholder="Enter the ingredients separated by ," />
+               <input className="btn btn-primary btn-block" type="submit" value="Add recipe"/>
             </form>
 
             <div className="container">
                <div className="row">
-                  {this.state.ingredients.map((recipe, index) => (
-                     <Recipe
-                        key={index}
-                        recipe={recipe}
-                        index={index}
-                        showEditor={this.state.showEditor}
-                        deleteRecipe={this.deleteRecipe}
-                        editRecipe={this.editRecipe}
-                     />
-                  ))}
+                  {this.state.recipes.map((recipe, index) => {
+                     return (
+                        <Recipe
+                           showEditorFunc={this.props.showEditorFunc}
+                           key={index}
+                           title={recipe.title}
+                           ingredients={recipe.ingredients}
+                           index={index}
+                           deleteRecipe={this.deleteRecipe}
+                        />
+                     )
+                  })}
                </div>
             </div>
          </div>
