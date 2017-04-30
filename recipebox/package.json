@@ -6,7 +6,7 @@
   "repository": "git@github.com:mahaveer0496/react-redux.git",
   "scripts": {
     "start": "webpack -w",
-    "sync": "browser-sync start --no-notify --server --files \"index.html, styles.css, bundle.js\""
+    "sync": "browser-sync start --no-notify --server --files \"public/index.html, public/styles.css, public/bundle.js\""
   },
   "author": "mahaveer",
   "license": "ISC",

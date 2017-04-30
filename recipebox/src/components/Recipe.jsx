@@ -9,8 +9,8 @@ export default class Recipe extends Component {
    render() {
       let { index, deleteRecipe, showEditorFunc, ingredients, title } = this.props
       return (
-         <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <table className="table table-bordered table-hover">
+         <div className="recipe col-12 col-sm-6 col-md-4 col-lg-4">
+            <table className="table table-hover">
                <thead className="thead-inverse">
                   <tr>
                      <th className="text-center">
@@ -29,15 +29,16 @@ export default class Recipe extends Component {
                </tbody>
             </table>
 
-            <button
-               onClick={() => showEditorFunc(index)}
-               className="btn btn-sm btn-primary">Edit
-            </button>
-
-            <button
-               onClick={() => deleteRecipe(index)}
-               className="btn btn-sm btn-danger">Delete
-            </button>
+            <div className="button-container">
+               <button
+                  onClick={() => showEditorFunc(index)}
+                  className="btn btn-sm btn-primary">Edit
+               </button>
+               <button
+                  onClick={() => deleteRecipe(index)}
+                  className="btn btn-sm btn-danger">Delete
+               </button>
+            </div>
          </div >
       )
    }

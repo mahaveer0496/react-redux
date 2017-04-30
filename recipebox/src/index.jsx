@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Recipes from './components/Recipes';
 import Editor from './components/Editor';
 
-global.GLOBAL_INDEX = null
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,16 +21,16 @@ class App extends Component {
       index
     })
   }
-  hideEditorFunc = (array) => {
+  hideEditorFunc = (obj) => {
     this.setState({
       showRecipes: true,
       showEditor: false,
-      newIngredients: array
+      newIngredients: obj
     })
   }
   render() {
     return (
-      <div className="container">
+      <div className="main container">
         <div className="row align-items-center">
           <div className="col-10 offset-1">
             <Header />

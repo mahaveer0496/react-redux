@@ -1,0 +1,58 @@
+* {
+   box-sizing: border-box !important
+}
+
+body {
+   background-color: #f4f4f4;
+}
+
+.showRecipes {
+   display: block
+}
+
+.hideRecipes {
+   display: none
+}
+
+button {
+   display: inline-block;
+   border-radius: 1px !important;
+   margin-left: 10px;
+   margin-right: 10px;
+   margin-top: -15px;
+}
+
+.button-container::before {
+   content: '';
+   display: block;
+   height: 20px;
+   width: 100%;
+}
+
+.button-container {
+   /*display: block;*/
+   text-align: center;
+   margin: 0 auto;
+}
+
+.recipe {
+   background-color: white;
+   margin-bottom: 20px;
+   box-shadow: 0px 5px 6px -4px rgba(1, 1, 1, .7);
+   position: relative;
+}
+
+input[type="text"] {
+   border-radius: 1px;
+   outline: none;
+   border: none;
+   margin-bottom: 2px;
+}
+
+input[type="submit"] {
+   border-radius: 1px
+}
+
+.main {
+   margin-top: 30px;
+}

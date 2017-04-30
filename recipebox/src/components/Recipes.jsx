@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import Recipe from './Recipe';
 
+//setting up localStorage
+let arrayOfRecipes = [{
+   title: 'Tomato curry',
+   ingredients: ['tomato', 'sauce', 'cury']
+},
+{
+   title: 'Apple wine',
+   ingredients: ['apple', 'cider', 'vinegar']
+},
+{
+   title: 'Bread',
+   ingredients: ['bread', 'jelly', 'jam']
+}
+]
+localStorage.setItem('recipes', JSON.stringify(arrayOfRecipes))
 export default class Recipes extends Component {
    constructor(props) {
       super(props)
       this.state = {
-         recipes: [{
-            title: 'Tomato curry',
-            ingredients: ['tomato', 'sauce', 'cury']
-         },
-         {
-            title: 'Apple wine',
-            ingredients: ['apple', 'cider', 'vinegar']
-         },
-         {
-            title: 'Bread',
-            ingredients: ['bread', 'jelly', 'jam']
-         }
-         ]
+         recipes: JSON.parse(localStorage.getItem("recipes"))
       }
    }
    submitHandler = (event) => {
@@ -31,10 +34,9 @@ export default class Recipes extends Component {
       }
       this.setState({
          recipes: [...this.state.recipes, obj]
-      }, () => {
-         console.log(this.state.recipes);
       })
-      this.refs.recipe.value = ''
+      this.refs.recipe.value = '';
+      this.refs.title.value = '';
    }
    deleteRecipe = (index) => {
       this.setState({
@@ -60,9 +62,9 @@ export default class Recipes extends Component {
       return (
          <div>
             <form className="form-group" onSubmit={this.submitHandler}>
-               <input className="form-control" type="text" ref="title" placeholder="Enter the title" />
-               <input className="form-control" type="text" ref="recipe" placeholder="Enter the ingredients separated by ," />
-               <input className="btn btn-primary btn-block" type="submit" value="Add recipe"/>
+               <input className="form-control" type="text" ref="title" placeholder="Enter the title" required />
+               <input className="form-control" type="text" ref="recipe" placeholder="Enter the ingredients separated by ," required />
+               <input className="btn btn-primary btn-block" type="submit" value="Add recipe" />
             </form>
 
             <div className="container">
