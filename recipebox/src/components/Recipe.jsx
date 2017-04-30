@@ -1,38 +1,23 @@
 import React, { Component } from 'react';
+// import Single_Recipe from './singleRecipe'
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 
-export default class Recipes extends Component {
+export default class Recipe extends Component {
    constructor(props) {
       super(props)
    }
    render() {
-      let { deleteRecipe, editRecipe } = this.props
+      let { recipe, index, deleteRecipe, editRecipe, showEditor } = this.props
       return (
-         < div className="box-container" >
-            <div className="container">
-               <div className="row">
-                  {this.props.ingredients.map((recipe, index) =>
-                     <div className="col-4" key={index}>
-                        <ul className="list-group boxes" >
-                           {recipe.map((dish, jindex) =>
-                              <li className="list-group-item" key={jindex}>{dish}</li>
-                           )
-                           }
-                        </ul>
-                        <Button onClick={() => {
-                           editRecipe(index)
-                        }} bsSize="small" bsStyle="primary">Edit</Button>
-                        <Button onClick={() => {
-                           deleteRecipe(index)
-                        }} bsSize="small" bsStyle="danger">Delete</Button>
-                     </div>
-                  )}
-               </div>
-            </div>
+         <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+            <ul className=" list-group">
+               {recipe.map((ingredients, ind) =>
+                  <li className="list-group-item" key={ind}>{ingredients}</li>
+               )}
+            </ul>
+            <button onClick={()=> editRecipe(index)}className="btn btn-sm btn-primary">Edit</button>
+            <button onClick={()=> deleteRecipe(index)}className="btn btn-sm btn-danger">Delete</button>
          </div >
       )
    }
 }
-
-
-

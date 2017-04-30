@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Header from './components/Header'
 import Recipes from './components/Recipes'
+
+global.GLOBAL_INDEX = null
 class App extends Component {
   render() {
     return (

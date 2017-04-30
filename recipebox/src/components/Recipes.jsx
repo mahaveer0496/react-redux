@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Recipe from './Recipe'
+import Recipe from './Recipe';
 
 export default class Recipes extends Component {
    constructor(props) {
       super(props)
       this.state = {
-         ingredients: [['tomato', 'sauce', 'cury'], ['apple', 'cider', 'vinegar'], ['bread', 'jelly', 'jam']]
+         ingredients: [['tomato', 'sauce', 'cury'], ['apple', 'cider', 'vinegar'], ['bread', 'jelly', 'jam']],
+         showEditor: false
       }
    }
    submitHandler = (event) => {
@@ -14,16 +15,21 @@ export default class Recipes extends Component {
       let ingredientsArr = ing.split(',')
       this.setState({
          ingredients: [...this.state.ingredients, ingredientsArr]
+      },()=>{
+         console.log(this.state.ingredients);
       })
       this.refs.recipe.value = ''
    }
    deleteRecipe = (index) => {
       this.setState({
-         ingredients: [...this.state.ingredients.slice(0,index), ...this.state.ingredients.slice(index+1)]
+         ingredients: [...this.state.ingredients.slice(0, index), ...this.state.ingredients.slice(index + 1)]
       })
    }
    editRecipe = (index) => {
       console.log(`edit called ${index}`);
+      this.setState({
+         showEditor: true
+      })
    }
    render() {
       return (
@@ -32,11 +38,20 @@ export default class Recipes extends Component {
                <input className="form-control" type="text" ref="recipe" placeholder="Enter the ingredients separated by ," />
             </form>
 
-            <Recipe
-               ingredients={this.state.ingredients}
-               deleteRecipe={this.deleteRecipe}
-               editRecipe={this.editRecipe}
-            />
+            <div className="container">
+               <div className="row">
+                  {this.state.ingredients.map((recipe, index) => (
+                     <Recipe
+                        key={index}
+                        recipe={recipe}
+                        index={index}
+                        showEditor={this.state.showEditor}
+                        deleteRecipe={this.deleteRecipe}
+                        editRecipe={this.editRecipe}
+                     />
+                  ))}
+               </div>
+            </div>
          </div>
       )
    }
