@@ -8,9 +8,9 @@ import Recipes from './Recipes';
 import Editor from './Editor';
 
 //actions
-import {addRecipeActionCreator} from './../actions/actions'
+import { addRecipeActionCreator, deleteRecipeActionCreator } from './../actions/actions'
 
- class App extends Component {
+class App extends Component {
    constructor(props) {
       super(props);
 
@@ -22,14 +22,16 @@ import {addRecipeActionCreator} from './../actions/actions'
 
    }
    render() {
+      let { recipes, create, remove } = this.props
       return (
          <div className="main container">
             <div className="row align-items-center">
                <div className="col-10 offset-1">
                   <Header />
-                  <Recipes 
-                  recipes={this.props.recipes}
-                  addRecipe={this.props.addRecipe}
+                  <Recipes
+                     recipes={recipes}
+                     create={create}
+                     remove={remove}
                   />
                </div>
             </div>
@@ -38,15 +40,18 @@ import {addRecipeActionCreator} from './../actions/actions'
    }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
    return {
       recipes: state
    }
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
    return {
-      addRecipe: ({title, ingredients}) => {
-         dispatch(addRecipeActionCreator({title, ingredients}))
+      create: ({ title, ingredients }) => {
+         dispatch(addRecipeActionCreator({ title, ingredients }))
+      },
+      remove: (index) => {
+         dispatch(deleteRecipeActionCreator(index))
       }
    }
 }

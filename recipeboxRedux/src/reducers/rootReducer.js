@@ -2,11 +2,9 @@ import {
    createStore
 } from 'redux';
 import {
-   ADD_RECIPE
+   CREATE_RECIPE,
+   REMOVE_RECIPE
 } from './../actions/actionTypes';
-import {
-   addRecipeActionCreator
-} from './../actions/actions';
 
 const initialState = [{
          title: 'Tomato curry',
@@ -23,16 +21,18 @@ const initialState = [{
    ],
    reducer = (state = initialState, action) => {
       switch (action.type) {
-         case ADD_RECIPE:
+         case CREATE_RECIPE:
             return [...state, {
                title: action.title,
                ingredients: action.ingredients
             }];
-
+         case REMOVE_RECIPE:
+            return [...state.slice(0,action.index),...state.slice(action.index + 1)]
          default:
             return state;
       }
    },
-   store = createStore(reducer);
-   global.store = store
-   export default store;
+   store = createStore(reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+global.store = store
+export default store;

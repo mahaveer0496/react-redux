@@ -1,14 +1,14 @@
 import {
-   ADD_RECIPE,
-   DELETE_RECIPE
+   CREATE_RECIPE,
+   REMOVE_RECIPE
 } from './actionTypes';
 
 export const addRecipeActionCreator = ({ title, ingredients }) => ({
-      type: ADD_RECIPE,
+      type: CREATE_RECIPE,
       title,
       ingredients
    }),
-   deleteRecipeActionCreator = id => ({
-   type: DELETE_RECIPE,
-   id
+   deleteRecipeActionCreator = index => ({
+   type: REMOVE_RECIPE,
+   index
 })

@@ -7,12 +7,15 @@ export default class Recipes extends Component {
    }
    submitHandler = (event) => {
       event.preventDefault();
-      this.props.addRecipe({
-         title: this.refs.title.value,
-         ingredients: this.refs.ingredients.value.split(',')
-      })
+      this.props.
+         create({
+            title: this.refs.title.value,
+            ingredients: this.refs.ingredients.value.split(',')
+         })
    }
    deleteRecipe = (index) => {
+      this.props.
+         remove(index);
    }
    editRecipe = (index) => {
    }
