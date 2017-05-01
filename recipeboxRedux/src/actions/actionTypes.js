@@ -1,0 +1,6 @@
+const ADD_RECIPE = 'ADD_RECIPE',
+   DELETE_RECIPE = 'DELETE_RECIPE';
+module.exports = {
+   ADD_RECIPE,
+   DELETE_RECIPE
+}

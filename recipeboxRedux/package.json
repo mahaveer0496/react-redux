@@ -5,7 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:mahaveer0496/react-redux.git",
   "scripts": {
-    "start": "webpack -w",
+    "start": "npm-run-all --parallel webpack sync",
+    "webpack": "webpack -w",
     "sync": "browser-sync start --no-notify --server --files \"public/**.**\""
   },
   "author": "mahaveer",
@@ -15,6 +16,12 @@
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "npm-run-all": "^4.0.2",
     "react-addons-test-utils": "^0.14.7",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
