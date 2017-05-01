@@ -12,6 +12,8 @@ export default class Recipes extends Component {
             title: this.refs.title.value,
             ingredients: this.refs.ingredients.value.split(',')
          })
+      this.refs.title.value = '';
+      this.refs.ingredients.value = '';
    }
    deleteRecipe = (index) => {
       this.props.

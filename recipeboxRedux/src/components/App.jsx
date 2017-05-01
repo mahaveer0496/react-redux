@@ -8,7 +8,7 @@ import Recipes from './Recipes';
 import Editor from './Editor';
 
 //actions
-import { addRecipeActionCreator, deleteRecipeActionCreator } from './../actions/actions'
+import { createRecipeActionCreator, removeRecipeActionCreator } from './../actions/actions'
 
 class App extends Component {
    constructor(props) {
@@ -48,10 +48,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
    return {
       create: ({ title, ingredients }) => {
-         dispatch(addRecipeActionCreator({ title, ingredients }))
+         dispatch(createRecipeActionCreator({ title, ingredients }))
       },
       remove: (index) => {
-         dispatch(deleteRecipeActionCreator(index))
+         dispatch(removeRecipeActionCreator(index))
       }
    }
 }

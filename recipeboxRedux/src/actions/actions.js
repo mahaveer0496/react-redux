@@ -3,12 +3,12 @@ import {
    REMOVE_RECIPE
 } from './actionTypes';
 
-export const addRecipeActionCreator = ({ title, ingredients }) => ({
+export const createRecipeActionCreator = ({ title, ingredients }) => ({
       type: CREATE_RECIPE,
       title,
       ingredients
    }),
-   deleteRecipeActionCreator = index => ({
+   removeRecipeActionCreator = index => ({
    type: REMOVE_RECIPE,
    index
 })
