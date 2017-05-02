@@ -15,24 +15,17 @@ export default class Recipes extends Component {
       this.refs.title.value = '';
       this.refs.ingredients.value = '';
    }
-   deleteRecipe = (index) => {
-      this.props.
-         remove(index);
-   }
-   // editRecipe = (index, object) => {
-   //    this.props.
-   //       edit(index, object)
-   // }
-   getIndexOfRecipe = index => {
-      this.props.
-         getIndex(index)
-   }
+
+   deleteRecipe = index => this.props.remove(index)
+
+   getIndexOfRecipe = index => this.props.getIndex(index)
+
    render() {
       return (
          <div>
             <form className="form-group" onSubmit={this.submitHandler}>
-               <input className="form-control" type="text" ref="title" placeholder="Enter the title" />
-               <input className="form-control" type="text" ref="ingredients" placeholder="Enter the ingredients separated by ," />
+               <input className="form-control" type="text" ref="title" placeholder="Enter the title" required/>
+               <input className="form-control" type="text" ref="ingredients" placeholder="Enter the ingredients separated by ," required/>
                <input className="btn btn-primary btn-block" type="submit" value="Add recipe" />
             </form>
 

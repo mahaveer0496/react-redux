@@ -4,7 +4,7 @@ export default class Editor extends Component {
    constructor(props) {
       super(props);
    }
-   editRecipe = (event) => {
+   editRecipe = event => {
       event.preventDefault();
       this.props.
          edit({
@@ -17,12 +17,10 @@ export default class Editor extends Component {
    render() {
       return (
          <form className="form-group" onSubmit={this.editRecipe}>
-            <input ref="title" className="form-control" type="text" placeholder="Enter new title" />
-            <input ref="ingredients" className="form-control" type="text" placeholder="Enter new ingredients separated by ," />
+            <input ref="title" className="form-control" type="text" placeholder="Enter new title" required/>
+            <input ref="ingredients" className="form-control" type="text" placeholder="Enter new ingredients separated by ," required/>
             <input className="btn btn-block btn-primary" type="submit" />
          </form>
       )
    }
 }
-
-
