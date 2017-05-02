@@ -1,0 +1,19 @@
+* {
+   box-sizing: border-box !important
+}
+
+body {
+   background-color: #f4f4f4;
+}
+.container-fluid{
+   margin-top: 20px;
+}
+textarea{
+   width:100%;
+   height: 80vh
+}
+.output{
+   background-color: white;
+   height: 80vh;
+   overflow: scroll
+}
