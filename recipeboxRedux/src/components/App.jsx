@@ -8,7 +8,7 @@ import Recipes from './Recipes';
 import Editor from './Editor';
 
 //actions
-import { createRecipeActionCreator, removeRecipeActionCreator } from './../actions/actions'
+import { createRecipeActionCreator, removeRecipeActionCreator, editRecipeActionCreator, getIndexOfRecipeToEditActionCreator } from './../actions/actions'
 
 class App extends Component {
    constructor(props) {
@@ -22,17 +22,25 @@ class App extends Component {
 
    }
    render() {
-      let { recipes, create, remove } = this.props
+      let { recipes, showEditor, create, remove, edit, getIndex } = this.props
       return (
          <div className="main container">
             <div className="row align-items-center">
                <div className="col-10 offset-1">
                   <Header />
-                  <Recipes
-                     recipes={recipes}
-                     create={create}
-                     remove={remove}
-                  />
+                  <div
+                     className={!showEditor ? `showRecipes` : `hideRecipes`}>
+                     <Recipes
+                        recipes={recipes}
+                        create={create}
+                        remove={remove}
+                        getIndex={getIndex}
+                     />
+                  </div>
+                  {showEditor &&
+                     <Editor
+                        edit={edit}
+                     />}
                </div>
             </div>
          </div>
@@ -42,7 +50,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
    return {
-      recipes: state
+      recipes: state.recipes,
+      showEditor: state.showEditor
    }
 }
 function mapDispatchToProps(dispatch) {
@@ -50,8 +59,14 @@ function mapDispatchToProps(dispatch) {
       create: ({ title, ingredients }) => {
          dispatch(createRecipeActionCreator({ title, ingredients }))
       },
-      remove: (index) => {
+      remove: index => {
          dispatch(removeRecipeActionCreator(index))
+      },
+      edit: (object) => {
+         dispatch(editRecipeActionCreator(object))
+      },
+      getIndex: index => {
+         dispatch(getIndexOfRecipeToEditActionCreator(index))
       }
    }
 }

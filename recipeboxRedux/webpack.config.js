@@ -23,5 +23,6 @@ module.exports = {
     inline: true,
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  devtool: 'source-map'
 };

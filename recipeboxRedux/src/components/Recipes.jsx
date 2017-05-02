@@ -19,14 +19,20 @@ export default class Recipes extends Component {
       this.props.
          remove(index);
    }
-   editRecipe = (index) => {
+   // editRecipe = (index, object) => {
+   //    this.props.
+   //       edit(index, object)
+   // }
+   getIndexOfRecipe = index => {
+      this.props.
+         getIndex(index)
    }
    render() {
       return (
          <div>
             <form className="form-group" onSubmit={this.submitHandler}>
-               <input className="form-control" type="text" ref="title" placeholder="Enter the title" required />
-               <input className="form-control" type="text" ref="ingredients" placeholder="Enter the ingredients separated by ," required />
+               <input className="form-control" type="text" ref="title" placeholder="Enter the title" />
+               <input className="form-control" type="text" ref="ingredients" placeholder="Enter the ingredients separated by ," />
                <input className="btn btn-primary btn-block" type="submit" value="Add recipe" />
             </form>
 
@@ -35,12 +41,12 @@ export default class Recipes extends Component {
                   {this.props.recipes.map((recipe, index) => {
                      return (
                         <Recipe
-                           showEditorFunc={this.props.showEditorFunc}
                            key={index}
                            title={recipe.title}
                            ingredients={recipe.ingredients}
                            index={index}
                            deleteRecipe={this.deleteRecipe}
+                           getIndexOfRecipe={this.getIndexOfRecipe}
                         />
                      )
                   })}
