@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// store
 import { addTodoActionCreator, deleteTodoActionCreator } from './reducer'
 
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.addTodo = this.addTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
-  addTodo = (event) => {
+  addTodo(event) {
     event.preventDefault();
     this.props.addTodo(this.refs.text.value);
     this.refs.text.value = '';
   }
-  deleteTodo = (index) => {
+  deleteTodo(index) {
     console.log(`deleteCalled ${index}`);
     this.props.deleteTodo(index)
   }
@@ -45,22 +46,16 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    todos: state
-  }
-
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    addTodo: (todo) => {
+const mapStateToProps = state => ({
+  todos: state
+}),
+  mapDispatchToProps = dispatch => ({
+    addTodo: todo => {
       dispatch(addTodoActionCreator(todo))
     },
-    deleteTodo: (index) => {
+    deleteTodo: index => {
       dispatch(deleteTodoActionCreator(index))
     }
-  }
-}
- 
+  });
 export default connect(mapStateToProps, mapDispatchToProps)(App)
 
