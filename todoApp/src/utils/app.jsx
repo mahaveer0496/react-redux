@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addTodoActionCreator, deleteTodoActionCreator } from './reducer'
+// actions ----
+import { addTodoActionCreator, deleteTodoActionCreator, toggleTodoActionCreator } from './actions.js'
 
 
 class App extends Component {
@@ -9,52 +10,65 @@ class App extends Component {
     super(props);
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.toggleTodo = this.toggleTodo.bind(this);
   }
   addTodo(event) {
     event.preventDefault();
-    this.props.addTodo(this.refs.text.value);
+    this.props.create(this.refs.text.value);
     this.refs.text.value = '';
   }
   deleteTodo(index) {
     console.log(`deleteCalled ${index}`);
-    this.props.deleteTodo(index)
+    this.props.remove(index);
+  }
+  toggleTodo(index) {
+    console.log(`toggleCalled ${index}`);
+    this.props.toggle(index);
   }
   render() {
     let { todos } = this.props;
-    console.log(todos);
     return (
       <div className="jumbotron container">
         <form onSubmit={this.addTodo}>
           <input className="form-control" type="text" ref="text" />
           <input className="btn btn-primary btn-block" type="submit" />
         </form>
-        <ul className="list-group">
+        <div className="list-group">
           {todos.map((todo, index) =>
-            <li className="list-group-item justify-content-between">
-              {todo}
-              <span
+            <div className="list-container list-group-item" key={index}>
+              <input
+                type="checkbox"
+                onClick={() => this.toggleTodo(index)} defaultChecked={todo.completed}
+                className="checkbox" />
+              <div
+                className={todo.completed ? 'strike list' : 'list'}>
+                {todo.todo}
+              </div>
+              <div
                 onClick={() => this.deleteTodo(index)}
-                key={index} className="badge badge-default badge-circle"
-              >
-                x
-              </span>
-            </li>
+                key={index}
+                className="cross">x
+              </div>
+            </div>
           )}
-        </ul>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  todos: state
+  todos: state.todos
 }),
   mapDispatchToProps = dispatch => ({
-    addTodo: todo => {
+    create: todo => {
       dispatch(addTodoActionCreator(todo))
     },
-    deleteTodo: index => {
+    remove: index => {
       dispatch(deleteTodoActionCreator(index))
+    },
+    toggle: index => {
+      dispatch(toggleTodoActionCreator(index))
     }
   });
 export default connect(mapStateToProps, mapDispatchToProps)(App)

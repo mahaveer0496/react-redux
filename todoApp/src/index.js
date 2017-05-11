@@ -6,8 +6,11 @@ import { Provider } from 'react-redux';
 import App from './utils/app'
 
 // store
-import store from './utils/reducer'
+import store from './utils/reducer';
 
+// style
+import './../styles.css'
+global.store = store;
 render(
   <Provider store={store}>
     <App />

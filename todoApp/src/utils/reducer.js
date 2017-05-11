@@ -1,6 +1,8 @@
 import {
    createStore
 } from 'redux';
+
+// action types -----
 import {
    ADD_TODO,
    DELETE_TODO,
@@ -8,23 +10,56 @@ import {
 } from './actionTypes';
 
 
-export const
-   addTodoActionCreator = todo => ({
-      type: ADD_TODO,
-      todo
-   }),
-   deleteTodoActionCreator = index => ({
-      type: DELETE_TODO,
-      index
-   }),
-   reducer = (state = [], action) => {
+
+const initialState = {
+      visibilityFilter: 'SHOW_COMPLETED',
+      todos: [{
+            todo: 'Walk the Dog',
+            completed: false
+         },
+         {
+            todo: 'Complete Todo App',
+            completed: false
+         },
+         {
+            todo: 'Eat Dinner',
+            completed: true
+         }
+      ]
+   },
+   reducer = (state = initialState, action) => {
       switch (action.type) {
          case ADD_TODO:
-            return state.concat(action.todo)
+            return Object.assign({}, state, {
+               todos: [
+                  ...state.todos,
+                  {
+                     todo: action.todo,
+                     completed: false
+                  }
+               ]
+            });
+
          case DELETE_TODO:
-            return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
+            return Object.assign({}, state, {
+               todos: [
+                  ...state.todos.slice(0, action.index), ...state.todos.slice(action.index + 1)
+               ]
+            });
+         case TOGGLE_TODO:
+            return Object.assign({}, state, {
+               todos: [
+                  ...state.todos.slice(0, action.index),
+                  {
+                     todo: state.todos[action.index].todo,
+                     completed: !state.todos[action.index].completed
+                  },
+                  ...state.todos.slice(action.index + 1)
+               ]
+            });
          default:
             return state
       }
-   };  
-export default createStore(reducer);
+   };
+export default createStore(reducer,
+   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
