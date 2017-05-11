@@ -1,5 +1,11 @@
-import { createStore } from 'redux';
-import { ADD_TODO, DELETE_TODO } from './actionTypes';
+import {
+   createStore
+} from 'redux';
+import {
+   ADD_TODO,
+   DELETE_TODO,
+   TOGGLE_TODO
+} from './actionTypes';
 
 
 export const
@@ -20,7 +26,5 @@ export const
          default:
             return state
       }
-   },
-   store = createStore(reducer);
-
-export default store
+   };  
+export default createStore(reducer);

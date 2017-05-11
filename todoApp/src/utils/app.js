@@ -61,7 +61,6 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(App)
-export default Container
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
