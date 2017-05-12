@@ -8,7 +8,7 @@ import {
    DELETE_TODO,
    TOGGLE_TODO,
    SET_VISIBILITY_FILTER
-} from './actionTypes';
+} from './../actions/actionTypes.js';
 
 
 const initialState = {

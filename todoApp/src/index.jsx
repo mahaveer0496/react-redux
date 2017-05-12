@@ -3,14 +3,13 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 // Compoennts
-import App from './utils/app'
+import App from './components/app'
 
 // store
-import store from './utils/reducer';
+import store from './reducers/reducer';
 
 // style
-import './../styles.css'
-global.store = store;
+import './../src/styles/styles.css';
 render(
   <Provider store={store}>
     <App />

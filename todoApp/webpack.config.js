@@ -1,25 +1,34 @@
-module.exports = {
-  entry: [
-    './src/index.js'
-  ],
+const path = require('path');
+const APP_DIR = path.resolve(__dirname, 'src');
+const PUBLIC_DIR = path.resolve(__dirname, 'public');
+const config = {
+  entry: `${APP_DIR}/index.jsx`,
   output: {
-    path: __dirname,
-
-    filename: 'public/bundle.js'
+    path: PUBLIC_DIR,
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
+        test: /\.jsx?/,
+        include: APP_DIR,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader?sourceMap', 'css-loader']
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader'
       }
-    },
-    { test: /\.css$/, loader: 'style-loader!css-loader' },
-    { test: /\.(jpg|svg|png)$/, loader: 'file-loader' }
     ]
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
+  devtool: 'source-map',
+  devServer: {
+    historyApiFallback: true
   }
-};
+}
+module.exports = config;

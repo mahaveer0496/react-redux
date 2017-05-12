@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions ----
-import { addTodoActionCreator, deleteTodoActionCreator, toggleTodoActionCreator, setVisibilityFilterActionCreator } from './actions.js'
+import { addTodoActionCreator, deleteTodoActionCreator, toggleTodoActionCreator, setVisibilityFilterActionCreator } from './../actions/actions.js';
 
 
 class App extends Component {
@@ -76,7 +76,9 @@ class App extends Component {
                 <input
                   type="checkbox"
                   onClick={() => this.toggleTodo(index)}
-                  onChange={() => { if ('lol' > 0); }}
+                  onChange={() => {
+                    if ('lol' > 0) { }
+                  }}
                   checked={todo.completed}
                   className="checkbox" />
               </label>

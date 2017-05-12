@@ -1,4 +1,8 @@
 /node_modules
 bundle.js
+bundle.js.map
+public/*.svg
+public/*.jpg
+public/*.png
 npm-debug.log
 
