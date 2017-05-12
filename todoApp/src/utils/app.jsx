@@ -63,7 +63,7 @@ class App extends Component {
 
 
         <form onSubmit={this.addTodo}>
-          <input className="form-control" type="text" ref="text" />
+          <input className="form-control" type="text" ref="text" required />
           <input className="btn btn-primary btn-block" type="submit" />
         </form>
 
@@ -76,7 +76,8 @@ class App extends Component {
                 <input
                   type="checkbox"
                   onClick={() => this.toggleTodo(index)}
-                  defaultChecked={todo.completed}
+                  onChange={() => { if ('lol' > 0); }}
+                  checked={todo.completed}
                   className="checkbox" />
               </label>
 
@@ -87,8 +88,8 @@ class App extends Component {
 
               <div
                 onClick={() => this.deleteTodo(index)}
+                className="cross"
                 key={index}>
-                <img className="cross" src="./../../cross.svg" alt="cross" />
               </div>
 
             </div>
@@ -106,10 +107,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  todos: state.todos,
-  visibilityFilter: state.visibilityFilter
-}),
+const
+  mapStateToProps = state => ({
+    todos: state.todos,
+    visibilityFilter: state.visibilityFilter
+  }),
   mapDispatchToProps = dispatch => ({
     create: todo => {
       dispatch(addTodoActionCreator(todo))
