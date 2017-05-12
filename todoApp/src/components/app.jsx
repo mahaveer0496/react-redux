@@ -59,51 +59,70 @@ class App extends Component {
   render() {
     let { setFilter } = this.props;
     return (
-      <div className="jumbotron container">
+      <div className="container">
 
 
         <form onSubmit={this.addTodo}>
-          <input className="form-control" type="text" ref="text" required />
-          <input className="btn btn-primary btn-block" type="submit" />
+          <div className="input-field form-container">
+            <input id="add-todo" type="text" ref="text" placeholder="Add Todo" required />
+
+            <input className="btn waves-effect waves-light" type="submit" />
+
+          </div>
         </form>
 
 
-        <div className="list-group">
+        <div className="collection">
           {this.state.todos.map((todo, index) =>
-            <div className="list-container list-group-item" key={index}>
-
-              <label className="label--checkbox">
+            <div className="collection-item" key={index}>
+              <p className="list">
                 <input
+                  id={todo.todo}
                   type="checkbox"
                   onClick={() => this.toggleTodo(index)}
                   onChange={() => {
                     if ('lol' > 0) { }
                   }}
-                  checked={todo.completed}
-                  className="checkbox" />
-              </label>
-
-              <div
-                className={todo.completed ? 'strike list' : 'list'}>
-                {todo.todo}
-              </div>
-
+                  checked={todo.completed} />
+                <label
+                  className={todo.completed ? 'strike list' : 'list'}
+                  htmlFor={todo.todo}>
+                  {todo.todo}
+                </label>
+              </p>
+              <input
+                type="checkbox"
+                onClick={() => this.toggleTodo(index)}
+                onChange={() => {
+                  if ('lol' > 0) { }
+                }}
+                checked={todo.completed}
+              />
               <div
                 onClick={() => this.deleteTodo(index)}
-                className="cross"
+                className="delete secondary-content"
                 key={index}>
+                <i className="material-icons">delete</i>
               </div>
 
             </div>
           )}
         </div>
 
+        <div className="button-container">
+          <div className="buttons">
+            <button onClick={() => setFilter('SHOW_ALL')} className="btn btn-primary">Show All</button>
+          </div>
+          <div className="buttons">
+            <button onClick={() => setFilter('SHOW_COMPLETED')} className="btn btn-primary">Completed</button>
+          </div>
+          <div className="buttons">
+            <button onClick={() => setFilter('SHOW_IN_PROGRESS')} className="btn btn-primary">In Progress</button>
+          </div>
+          
+        </div>
 
-        <button onClick={() => setFilter('SHOW_ALL')} className="btn btn-primary">Show All</button>
-        <button onClick={() => setFilter('SHOW_COMPLETED')} className="btn btn-primary">Completed</button>
-        <button onClick={() => setFilter('SHOW_IN_PROGRESS')} className="btn btn-primary">In Progress</button>
-
-
+        <div className="space"></div>
       </div>
     )
   }
