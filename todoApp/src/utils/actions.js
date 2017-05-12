@@ -1,7 +1,8 @@
 import {
    ADD_TODO,
    DELETE_TODO,
-   TOGGLE_TODO
+   TOGGLE_TODO,
+   SET_VISIBILITY_FILTER
 } from './actionTypes';
 
 export const
@@ -16,4 +17,8 @@ export const
    toggleTodoActionCreator = index => ({
       type: TOGGLE_TODO,
       index
+   }),
+   setVisibilityFilterActionCreator = filter => ({
+      type: SET_VISIBILITY_FILTER,
+      filter
    })

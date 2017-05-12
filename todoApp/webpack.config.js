@@ -15,7 +15,8 @@ module.exports = {
         presets: ['react', 'es2015', 'stage-1']
       }
     },
-    { test: /\.css$/, loader: 'style-loader!css-loader' }
+    { test: /\.css$/, loader: 'style-loader!css-loader' },
+    { test: /\.(jpg|svg|png)$/, loader: 'file-loader' }
     ]
   },
   resolve: {

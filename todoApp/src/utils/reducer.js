@@ -6,13 +6,13 @@ import {
 import {
    ADD_TODO,
    DELETE_TODO,
-   TOGGLE_TODO
+   TOGGLE_TODO,
+   SET_VISIBILITY_FILTER
 } from './actionTypes';
 
 
-
 const initialState = {
-      visibilityFilter: 'SHOW_COMPLETED',
+      visibilityFilter: 'SHOW_ALL',
       todos: [{
             todo: 'Walk the Dog',
             completed: false
@@ -46,6 +46,7 @@ const initialState = {
                   ...state.todos.slice(0, action.index), ...state.todos.slice(action.index + 1)
                ]
             });
+
          case TOGGLE_TODO:
             return Object.assign({}, state, {
                todos: [
@@ -57,6 +58,11 @@ const initialState = {
                   ...state.todos.slice(action.index + 1)
                ]
             });
+            
+         case SET_VISIBILITY_FILTER:
+            return Object.assign({}, state, {
+               visibilityFilter: action.filter
+            })
          default:
             return state
       }
