@@ -31,7 +31,8 @@ const Todo_Item = ({ todo, index, remove, toggle }) =>
 
 
 Todo_Item.propTypes = {
-   todo: PropTypes.object.isRequired
+   todo: PropTypes.object.isRequired,
+   index: PropTypes.number.isRequired
 };
 
 export default Todo_Item;

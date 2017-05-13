@@ -11,7 +11,8 @@ import {
 } from './../actions/actionTypes.js';
 
 
-const initialState = {
+const
+   initialState = {
       visibilityFilter: 'SHOW_ALL',
       todos: [{
             todo: 'Walk the Dog',
@@ -29,6 +30,7 @@ const initialState = {
    },
    reducer = (state = initialState, action) => {
       switch (action.type) {
+
          case ADD_TODO:
             return Object.assign({}, state, {
                todos: [
@@ -58,11 +60,12 @@ const initialState = {
                   ...state.todos.slice(action.index + 1)
                ]
             });
-            
+
          case SET_VISIBILITY_FILTER:
             return Object.assign({}, state, {
                visibilityFilter: action.filter
             })
+
          default:
             return state
       }
