@@ -11,13 +11,8 @@ html {
 
 ::-webkit-scrollbar {
    width: 0px;
-   /* remove scrollbar space */
    background: transparent;
-   /* optional: just make scrollbar invisible */
 }
-
-
-/* optional: show position indicator in red */
 
 ::-webkit-scrollbar-thumb {
    background: #FF0000;
@@ -58,22 +53,26 @@ html {
 .strike {
    text-decoration: line-through
 }
-.form-container .btn{
+
+.form-container .btn {
    display: block;
    margin: 0 auto;
 }
+
 .button-container {
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
    -ms-flex-pack: distribute;
-       justify-content: space-around
+   justify-content: space-around
 }
-.buttons{
+
+.buttons {
    width: 300px;
    text-align: center
 }
-.space{
+
+.space {
    width: 100%;
    height: 100px;
    background-color: white;
