@@ -1,20 +1,14 @@
 const visibleTodos = (todos, filter) => {
-   let newTodos = todos;
    switch (filter) {
-      case 'SHOW_All':
-         newTodos = todos;
-         break;
+      case 'SHOW_ALL':
+         return todos;
       case 'SHOW_COMPLETED':
-         newTodos = todos.filter(todo => todo.completed === true)
-         break;
+         return todos.filter(todo => todo.completed === true)
       case 'SHOW_IN_PROGRESS':
-         newTodos = todos.filter(todo => todo.completed === false)
-         break;
+         return todos.filter(todo => todo.completed === false)
       default:
          console.log('not the right filter');
          break;
    }
-   return newTodos;
 }
-
 export default visibleTodos;
