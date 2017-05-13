@@ -6,7 +6,7 @@ const Todo_Item = ({ todo, index, remove, toggle }) =>
       <p className="list">
 
          <input
-            id={todo.todo}
+            id={index}
             type="checkbox"
             onClick={() => toggle(index)}
             onChange={() => {
@@ -16,7 +16,7 @@ const Todo_Item = ({ todo, index, remove, toggle }) =>
 
          <label
             className={todo.completed ? 'strike list' : 'list'}
-            htmlFor={todo.todo}>
+            htmlFor={index}>
             {todo.todo}
          </label>
       </p>
