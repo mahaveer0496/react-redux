@@ -1,11 +1,14 @@
-const Todo_Item = params =>
-   <div className="collection-item" key={index}>
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Todo_Item = ({ todo, index, remove, toggle }) =>
+   <div className="collection-item">
       <p className="list">
 
          <input
             id={todo.todo}
             type="checkbox"
-            onClick={() => toggleTodo(index)}
+            onClick={() => toggle(index)}
             onChange={() => {
                if ('lol' > 0) { }
             }}
@@ -19,10 +22,16 @@ const Todo_Item = params =>
       </p>
 
       <div
-         onClick={() => deleteTodo(index)}
+         onClick={() => remove(index)}
          className="delete secondary-content"
          key={index}>
          <i className="material-icons">delete</i>
       </div>
    </div>
-export default Todo_Item
+
+
+Todo_Item.propTypes = {
+   todo: PropTypes.object.isRequired
+};
+
+export default Todo_Item;
